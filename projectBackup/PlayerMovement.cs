@@ -8,11 +8,14 @@ public class PlayerMovement : MonoBehaviour
      public float speed;
      public float input; //keeps track of x input (going left or right)
      public SpriteRenderer spriteRenderer;
+     public float jumpForce;
 
     // Update is called once per frame
     void Update()
     {
           input = Input.GetAxisRaw("Horizontal");
+
+          //flip the player depending on moving left/right
           if (input < 0)
           {
                spriteRenderer.flipX = true;
@@ -20,6 +23,12 @@ public class PlayerMovement : MonoBehaviour
           else if (input > 0)
           {
                spriteRenderer.flipX = false;
+          }
+
+          //jumping
+          if(Input.GetButton("Jump"))
+          {
+               playerRb.velocity = Vector2.up * jumpForce;
           }
     }
 
