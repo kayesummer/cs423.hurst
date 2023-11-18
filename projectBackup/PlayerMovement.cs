@@ -13,6 +13,9 @@ public class PlayerMovement : MonoBehaviour
      private bool isGrounded; // if true, player can jump, else can't jump
      public Transform feetPosition;
      public float groundCheckCircle; // invisible circle on player feet that checks to see if the circle overlaps with the ground
+     public float jumpTime = 0.35f; // jump timer
+     public float jumpTimeCounter;
+     private bool isJumping;
 
     // Update is called once per frame
     void Update()
@@ -34,9 +37,31 @@ public class PlayerMovement : MonoBehaviour
           // returns t/f whether or not player is on the ground, creates an invisible circle at players feet, 
           // make the circle the same size as groundCheckCircle, and checks if that circle overlaps the ground
           isGrounded = Physics2D.OverlapCircle(feetPosition.position, groundCheckCircle, groundLayer);
-          if(isGrounded == true && Input.GetButton("Jump")) // is player on ground and jump button pressed?
+          if(isGrounded == true && Input.GetButtonDown("Jump")) // is player on ground and jump button pressed?
           {
+               isJumping = true;
+               jumpTimeCounter = jumpTime;
                playerRb.velocity = Vector2.up * jumpForce;  // jump 
+          }
+
+          // allows a higher jump when holding space bar
+          if (Input.GetButton("Jump") && isJumping == true)  // in a jump
+          {
+               if (jumpTimeCounter > 0)
+               {
+                    playerRb.velocity = Vector2.up * jumpForce;  // jump higher
+                    jumpTimeCounter -= Time.deltaTime;
+               }
+               else // once timer runs out, player is not jumping anymore
+               {
+                    isJumping = false;
+               }
+          }
+
+          // jump button is not pressed, so player is not jumping
+          if (Input.GetButtonUp("Jump"))
+          {
+               isJumping = false;
           }
     }
 
