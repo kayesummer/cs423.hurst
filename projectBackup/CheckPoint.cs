@@ -20,7 +20,7 @@ public class CheckPoint : MonoBehaviour
         {
                playerRespawn.respawnPoint = transform.position;
         }
-    }
+     }
 
 
 }
