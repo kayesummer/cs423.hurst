@@ -31,16 +31,4 @@ public class PlayerHealth : MonoBehaviour
                health = maxHealth / 2;
           }
      }
-
-     private void OnCollisionEnter2D(Collision2D collision)
-     {
-          if (collision.gameObject.name == "Enemy")
-          {
-               health -= 1;
-               if(health <= 0)
-               {
-                    
-               }
-          }
-     }
 }

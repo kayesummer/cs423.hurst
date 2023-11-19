@@ -5,10 +5,11 @@ using UnityEngine;
 public class CheckPoint : MonoBehaviour
 {
      private PlayerRespawn playerRespawn;
-     
-     
+     public PlayerHealth playerHealth;
+
+
      // Start is called before the first frame update
-    void Start()
+     void Start()
     {
           playerRespawn = GameObject.Find("Player").GetComponent<PlayerRespawn>();   
     }
@@ -19,6 +20,14 @@ public class CheckPoint : MonoBehaviour
         if (collision.gameObject.name == "Player")
         {
                playerRespawn.respawnPoint = transform.position;
+               if (playerHealth.health < 9)
+               {
+                    playerHealth.health += 2;
+               }
+               else if (playerHealth.health == 9)
+               {
+                    playerHealth.health += 1;
+               }
         }
      }
 

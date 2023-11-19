@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerRespawn : MonoBehaviour
 {
      public Vector3 respawnPoint;
-     
+     public PlayerHealth playerHealth;
+
      public void RespawnNow()
      {
           transform.position = respawnPoint;
@@ -16,6 +17,7 @@ public class PlayerRespawn : MonoBehaviour
           if (collision.gameObject.tag == "Death")
           {
                RespawnNow();
+               playerHealth.health = playerHealth.maxHealth / 2;
           }
      }
 }
