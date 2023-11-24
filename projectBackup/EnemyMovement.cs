@@ -27,5 +27,9 @@ public class EnemyMovement : MonoBehaviour
           {
                isChasing = true;
           }
+          else
+          {
+               isChasing = false;
+          }
     }
 }
