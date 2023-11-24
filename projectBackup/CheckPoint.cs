@@ -20,11 +20,11 @@ public class CheckPoint : MonoBehaviour
         if (collision.gameObject.name == "Player")
         {
                playerRespawn.respawnPoint = transform.position;
-               if (playerHealth.health < 9)
+               if (playerHealth.health < playerHealth.maxHealth - 1)
                {
                     playerHealth.health += 2;
                }
-               else if (playerHealth.health == 9)
+               else if (playerHealth.health == playerHealth.maxHealth - 1)
                {
                     playerHealth.health += 1;
                }
