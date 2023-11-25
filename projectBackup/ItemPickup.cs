@@ -18,8 +18,7 @@ public class ItemPickup : MonoBehaviour
     {
         
     }
-
-     private void OnTriggerEnter2D(Collider2D collision)
+     private void OnCollisionEnter2D(UnityEngine.Collision2D collision)
      {
           if (collision.gameObject.tag == "Player")
           {
@@ -30,4 +29,5 @@ public class ItemPickup : MonoBehaviour
                transform.localPosition = Vector2.zero;
           }
      }
+
 }
