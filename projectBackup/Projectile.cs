@@ -5,8 +5,6 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
      public Rigidbody2D projectileRb;
-     public EnemyHealth enemyHealth;
-     public int damage;
      public float speed;
      public float projectileLife;
      public float projectileCount;
@@ -34,9 +32,9 @@ public class Projectile : MonoBehaviour
 
      private void OnCollisionEnter2D(Collision2D collision)
      {
-          if(collision.gameObject.tag == "Enemy")
+          if(collision.collider.gameObject.tag == "Skeleton")
           {
-               enemyHealth.TakeDamage(damage);
+               Destroy(collision.gameObject);
           }
           Destroy(gameObject);
      }
